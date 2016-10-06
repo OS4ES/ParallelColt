@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-  <groupId>net.sourceforge.parallelcolt</groupId>
+  <groupId>com.github.rwl</groupId>
   <artifactId>parallelcolt</artifactId>
   <versioning>
     <versions>
       <version>0.11.5-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20161006090057</lastUpdated>
+    <lastUpdated>20161006093519</lastUpdated>
   </versioning>
 </metadata>

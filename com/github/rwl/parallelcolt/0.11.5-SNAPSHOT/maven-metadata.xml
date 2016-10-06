@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata modelVersion="1.1.0">
-  <groupId>net.sourceforge.parallelcolt</groupId>
+  <groupId>com.github.rwl</groupId>
   <artifactId>parallelcolt</artifactId>
   <version>0.11.5-SNAPSHOT</version>
   <versioning>
     <snapshot>
-      <timestamp>20161006.090056</timestamp>
+      <timestamp>20161006.093519</timestamp>
       <buildNumber>1</buildNumber>
     </snapshot>
-    <lastUpdated>20161006090056</lastUpdated>
+    <lastUpdated>20161006093519</lastUpdated>
     <snapshotVersions>
       <snapshotVersion>
         <extension>jar</extension>
-        <value>0.11.5-20161006.090056-1</value>
-        <updated>20161006090056</updated>
+        <value>0.11.5-20161006.093519-1</value>
+        <updated>20161006093519</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
-        <value>0.11.5-20161006.090056-1</value>
-        <updated>20161006090056</updated>
+        <value>0.11.5-20161006.093519-1</value>
+        <updated>20161006093519</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
