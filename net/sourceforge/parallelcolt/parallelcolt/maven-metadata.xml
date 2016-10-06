@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>net.sourceforge.parallelcolt</groupId>
+  <artifactId>parallelcolt</artifactId>
+  <versioning>
+    <versions>
+      <version>0.11.5-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20161006090057</lastUpdated>
+  </versioning>
+</metadata>
