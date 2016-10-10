@@ -1,6 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <!--
   <groupId>net.sourceforge.parallelcolt</groupId>
+  <artifactId>parallelcolt</artifactId>
+  -->
+  <groupId>com.github.rwl</groupId>
   <artifactId>parallelcolt</artifactId>
   <version>0.11.5-SNAPSHOT</version>
   <name>ParallelColt</name>
@@ -52,29 +56,69 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- github server corresponds to entry in ~/.m2/settings.xml -->
+    <github.global.server>github</github.global.server>
   </properties>
   
   <distributionManagement>
     <!-- use the following if you're not using a snapshot version. -->
+    <!--
     <repository>
       <id>sonatype-nexus-staging</id>
       <name>Sonatype OSS Staging Repository</name>
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
     </repository>
+    -->
     <!-- use the following if you ARE using a snapshot version. -->
+    <!--
     <snapshotRepository>
       <id>sonatype-nexus-snapshots</id>
       <name>Sonatype OSS Snapshot Repository</name>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
+    -->
+    <!-- To deploy to a maven repository in Github -->
+    <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file:///${user.dir}/target/mvn-repo</url>
+    </repository>
   </distributionManagement>
 
+    <repositories>
+        <repository>
+            <id>Clojars Repository</id>
+            <url>http://clojars.org/repo/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
   <dependencies>
+    <!-- OS4ES: Remove this dependency as the sources of this JAR are already included in 
+         this personalised ParallelColt JAR -->
+    <!--
     <dependency>
       <groupId>net.sourceforge.jplasma</groupId>
       <artifactId>jplasma</artifactId>
       <version>1.2.0</version>
     </dependency>
+    -->
+    <!-- OS4ES: Add following dependency -->
+    <!-- https://mvnrepository.com/artifact/com.github.rwl/core-lapack -->
+    <dependency>
+        <groupId>com.github.rwl</groupId>
+        <artifactId>core-lapack</artifactId>
+        <version>0.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/incanter/arpack-combo -->
+    <dependency>
+        <groupId>incanter</groupId>
+        <artifactId>arpack-combo</artifactId>
+        <version>0.9.4</version>
+    </dependency>
+    
 
    <dependency>
     <groupId>com.github.wendykierp</groupId>
@@ -163,6 +207,7 @@
         </executions>
       </plugin>
 
+    <!--
     <plugin>
       <groupId>org.sonatype.plugins</groupId>
       <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -174,6 +219,7 @@
         <autoReleaseAfterClose>true</autoReleaseAfterClose>
       </configuration>
     </plugin>
+    -->
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -206,6 +252,38 @@
           <failOnError>false</failOnError>
         </configuration>
       </plugin>
+        <!--
+        <plugin>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>2.8.2</version>
+            <configuration>
+                <altDeploymentRepository>internal.repo::default::file:///${user.dir}/target/mvn-repo</altDeploymentRepository>
+            </configuration>
+        </plugin>
+        -->
+        <plugin>
+            <groupId>com.github.github</groupId>
+            <artifactId>site-maven-plugin</artifactId>
+            <version>0.10</version>
+            <configuration>
+                    <message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
+                    <noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
+                    <outputDirectory>${user.dir}/target/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
+                    <branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
+                    <includes><include>**/*</include></includes>
+                    <repositoryName>ParallelColt</repositoryName>      <!-- github repo name -->
+                    <repositoryOwner>OS4ES</repositoryOwner>    <!-- github username  -->
+            </configuration>
+            <executions>
+              <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
+              <execution>
+                    <goals>
+                      <goal>site</goal>
+                    </goals>
+                    <phase>deploy</phase>
+              </execution>
+            </executions>
+        </plugin>
     </plugins>
   </build>
 

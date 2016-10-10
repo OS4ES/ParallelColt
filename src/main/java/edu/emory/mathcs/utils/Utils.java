@@ -42,7 +42,8 @@ import cern.colt.matrix.tint.IntMatrix2D;
 import cern.jet.math.tdcomplex.DComplexFunctions;
 import cern.jet.math.tdouble.DoubleFunctions;
 import cern.jet.math.tint.IntFunctions;
-import edu.emory.mathcs.utils.ConcurrencyUtils;
+//OS4ES
+//import edu.emory.mathcs.utils.ConcurrencyUtils;
 
 /**
  * Utility class for translating Octave/Numpy code to Colt.
